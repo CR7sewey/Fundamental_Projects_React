@@ -3,7 +3,7 @@ import { createContext, useReducer } from "react";
 import cartItems from "./data";
 const url = "https://www.course-api.com/react-useReducer-cart-project";
 import { reducer } from "./reducer";
-import { calculateAmount, calculatePrice } from "./utils";
+import { calculateAmount, calculatePrice, calculateAmountPrice } from "./utils";
 
 const AppContext = createContext();
 
@@ -19,8 +19,11 @@ const AppProvider = ({ children }) => {
   //const [numItems, setNumItems] = useState(0);
 
   const [cartArray, dispatch] = useReducer(reducer, initialState);
-  const total = calculatePrice(cartArray.cart);
-  const numItems = calculateAmount(cartArray.cart);
+  //const total = calculatePrice(cartArray.cart);
+  //const numItems = calculateAmount(cartArray.cart);
+  const { price: total, amount: numItems } = calculateAmountPrice(
+    cartArray.cart
+  );
 
   useEffect(() => {
     const fetchData = async () => {

@@ -4,11 +4,11 @@ import { useGlobalContext } from "./Context";
 const CartContainer = () => {
   //const cartArray = [...cartItems];
 
-  let { cartArray, clearCart, total } = useGlobalContext();
+  const { cartArray, clearCart, total } = useGlobalContext();
 
-  cartArray = Array.from(cartArray.cart.entries());
+  const cart = Array.from(cartArray.cart.entries());
 
-  if (cartArray.length === 0) {
+  if (cart.length === 0) {
     return (
       <section className="cart">
         {/* cart header */}
@@ -19,7 +19,7 @@ const CartContainer = () => {
       </section>
     );
   }
-  console.log(cartArray);
+  console.log(cart);
   return (
     <section className="cart">
       {/* cart header */}
@@ -28,7 +28,7 @@ const CartContainer = () => {
       </header>
       {/* cart items */}
       <div>
-        {cartArray.map((cartItem) => {
+        {cart.map((cartItem) => {
           const [itemId, item] = cartItem;
           return <CartItem key={itemId} {...item} />;
         })}

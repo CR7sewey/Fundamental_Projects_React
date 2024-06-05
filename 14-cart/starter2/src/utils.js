@@ -27,3 +27,13 @@ export const calculatePrice = (items) => {
   }
   return Number(tot.toFixed(2));
 };
+
+export const calculateAmountPrice = (items) => {
+  let tot_amount = 0;
+  let tot_price = 0;
+  for (let { price, amount } of items.values()) {
+    tot_price += parseFloat(price) * Number(amount);
+    tot_amount += parseFloat(amount);
+  }
+  return { price: Number(tot_price.toFixed(2)), amount: tot_amount };
+};
